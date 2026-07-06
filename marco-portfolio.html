@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ✅ Proper meta tags — no more "Lovable App" on LinkedIn -->
+<title>Marco | Mechatronics Engineering Portfolio</title>
+<meta name="description" content="Aung Pyae Sone (Marco) — Mechatronics Engineering student at AGH University of Science and Technology, Kraków. Robotics, embedded systems, and mechanical design.">
+<meta property="og:title" content="Marco | Mechatronics Engineering Portfolio">
+<meta property="og:description" content="3rd year Mechatronics Engineering student at AGH UST, Kraków. Robotics, embedded systems & mechanical design projects.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://YOUR-DOMAIN.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Saira:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#111111;
+  --ink-soft:#6b6b6b;
+  --bg:#ffffff;
+  --card:#fafafa;
+  --line:#e4e4e4;
+  --glow:0 0 18px rgba(0,0,0,.28);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Saira',sans-serif;
+  font-weight:300;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+}
+h1,h2,h3,.logo,.btn,.display{
+  font-family:'Bruno Ace',cursive;
+  font-weight:400;
+  letter-spacing:.01em;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1300px;margin:0 auto;padding:20px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{font-size:1.35rem;text-shadow:var(--glow)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#8a8a8a;transition:color .2s;
+}
+.nav-links a:hover{color:var(--ink)}
+.menu-btn{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer}
+
+/* ---------- HERO ---------- */
+.hero{padding:96px 0 110px}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:56px;align-items:center;
+}
+.eyebrow{
+  font-size:.78rem;letter-spacing:.42em;text-transform:uppercase;
+  font-weight:500;margin-bottom:18px;
+}
+.hero h1{
+  font-size:clamp(2.2rem,5vw,3.6rem);
+  line-height:1.15;margin-bottom:22px;
+  text-shadow:var(--glow);
+}
+.hero-name{
+  display:inline-block;margin-top:6px;
+  font-size:clamp(1.3rem,3vw,2.1rem);
+  text-shadow:2px 3px 8px rgba(0,0,0,.35);
+}
+.hero-sub{color:var(--ink-soft);max-width:440px;font-size:1.02rem;margin-bottom:34px}
+
+/* ---------- PROJECT MODAL ---------- */
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
+  display:none;align-items:flex-start;justify-content:center;
+  padding:40px 16px;overflow-y:auto;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:#fff;border-radius:18px;
+  max-width:820px;width:100%;
+  padding:44px 48px;position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+  margin:auto 0;
+  animation:pop .22s ease;
+}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.modal-close{
+  position:absolute;top:22px;right:24px;
+  width:36px;height:36px;border-radius:50%;
+  border:1.5px solid #ccc;background:#fff;
+  font-size:1.1rem;line-height:1;cursor:pointer;color:#555;
+  transition:border-color .2s,color .2s;
+}
+.modal-close:hover{border-color:var(--ink);color:var(--ink)}
+.modal h3.modal-title{
+  font-size:clamp(1.4rem,3vw,1.9rem);
+  margin-bottom:28px;text-shadow:var(--glow);padding-right:48px;
+}
+.modal-hero-img{
+  border-radius:14px;margin-bottom:28px;aspect-ratio:16/7;
+  background:linear-gradient(150deg,#efefef,#dedede);
+  display:flex;align-items:center;justify-content:center;
+  color:#9a9a9a;font-size:.8rem;letter-spacing:.08em;
+  width:100%;object-fit:cover;
+}
+.modal h4{
+  font-family:'Bruno Ace';font-size:.92rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  margin:30px 0 14px;
+}
+.modal h4:first-of-type{margin-top:0}
+.modal p{color:var(--ink-soft);font-size:.95rem;margin-bottom:6px}
+.stages{list-style:none}
+.stages li{
+  display:flex;gap:14px;align-items:flex-start;
+  color:var(--ink-soft);font-size:.95rem;margin-bottom:14px;
+}
+.stage-num{
+  flex-shrink:0;width:26px;height:26px;border-radius:50%;
+  border:1.5px solid #ccc;background:var(--card);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:500;color:var(--ink);
+}
+.spec-card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:18px 22px;margin-bottom:14px;
+}
+.spec-card b{font-size:.85rem;display:block;margin-bottom:10px;font-weight:600}
+.spec-row{
+  display:flex;justify-content:space-between;gap:16px;
+  padding:6px 0;font-size:.88rem;
+}
+.spec-row .k{color:var(--ink-soft);display:flex;gap:8px;align-items:baseline}
+.spec-row .k::before{content:"›";color:#aaa}
+.spec-row .v{text-align:right;color:var(--ink);white-space:pre-line}
+.hw-panel{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:26px 22px;text-align:center;
+}
+.hw-panel .hw-title{font-weight:600;font-size:.95rem;margin-bottom:22px}
+.hw-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:22px 16px;
+}
+.hw-item span{display:block;font-size:.78rem;color:#444;margin-top:10px;line-height:1.4}
+.hw-img{
+  aspect-ratio:1;border-radius:10px;background:#fff;
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:#b5b5b5;font-size:.65rem;letter-spacing:.05em;
+}
+.arch{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:24px;
+  font-family:monospace;font-size:.85rem;color:#444;
+  text-align:center;line-height:2;white-space:pre-line;
+}
+body.modal-lock{overflow:hidden}
+@media(max-width:600px){
+  .modal{padding:32px 22px}
+  .spec-row{flex-direction:column;gap:2px}
+  .spec-row .v{text-align:left;padding-left:18px}
+}
+.stats{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:38px}
+.stat{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:18px 22px;min-width:120px;
+  transition:transform .2s, box-shadow .2s;
+}
+.stat:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.07)}
+.stat b{font-family:'Bruno Ace';font-size:1.5rem;display:block;margin-bottom:4px}
+.stat span{font-size:.82rem;color:var(--ink-soft)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 26px;border-radius:999px;font-size:.82rem;
+  cursor:pointer;transition:transform .15s, box-shadow .2s;
+  border:1.5px solid var(--ink);
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.15)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-light{background:#fff;color:var(--ink)}
+
+.hero-visual{
+  position:relative;border-radius:24px;overflow:hidden;
+  aspect-ratio:3/4;max-height:480px;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(255,45,85,.55), transparent 55%),
+    radial-gradient(circle at 30% 80%, rgba(120,0,40,.6), transparent 60%),
+    #14060c;
+  box-shadow:0 24px 60px rgba(0,0,0,.25);
+}
+.hero-visual::after{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:34px 34px;
+}
+.chip{
+  position:absolute;z-index:2;
+  background:rgba(15,15,15,.75);color:#fff;
+  font-size:.72rem;padding:8px 14px;border-radius:999px;
+  backdrop-filter:blur(6px);display:flex;align-items:center;gap:6px;
+}
+.chip.tl{top:18px;left:18px}
+.chip.br{bottom:18px;right:18px}
+
+/* ---------- SECTION HEADINGS ---------- */
+.sec-title{
+  font-size:clamp(1.7rem,3.4vw,2.4rem);
+  text-align:center;margin-bottom:54px;
+  text-shadow:var(--glow);
+}
+
+/* ---------- ABOUT ---------- */
+.about-grid{display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:start}
+.about-photo{
+  border-radius:20px;border:1px solid var(--line);
+  aspect-ratio:4/5;background:linear-gradient(160deg,#ececec,#dcdcdc);
+  display:flex;align-items:center;justify-content:center;
+  color:#9a9a9a;font-size:.85rem;letter-spacing:.1em;
+  width:100%;object-fit:cover;
+}
+.about-text p{color:#555;margin-bottom:18px}
+
+/* ---------- EXPERIENCE ---------- */
+.xp-card{
+  max-width:760px;margin:0 auto;
+  background:var(--card);border:1px solid var(--line);
+  border-radius:18px;padding:38px 42px;
+}
+.xp-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:26px}
+.xp-icon{
+  width:48px;height:48px;border-radius:12px;flex-shrink:0;
+  background:#ececec;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+}
+.xp-head h3{font-size:1.25rem;margin-bottom:4px}
+.xp-meta{font-size:.9rem;color:var(--ink-soft)}
+.xp-date{font-size:.78rem;color:#9a9a9a}
+.xp-card ul{list-style:none;margin-bottom:28px}
+.xp-card li{
+  position:relative;padding-left:22px;margin-bottom:12px;
+  color:#555;font-size:.95rem;
+}
+.xp-card li::before{content:"▸";position:absolute;left:0;color:#999}
+
+/* ---------- PROJECTS ---------- */
+.note{
+  width:fit-content;margin:-30px auto 44px;
+  background:#7a7a7a;color:#fff;font-style:italic;
+  font-size:.8rem;padding:8px 20px;border-radius:999px;
+}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.proj{
+  background:#fff;border:1px solid var(--line);border-radius:16px;
+  overflow:hidden;transition:transform .2s, box-shadow .25s;
+  display:flex;flex-direction:column;
+}
+.proj:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(0,0,0,.1)}
+.proj-img{
+  aspect-ratio:4/3;background:linear-gradient(150deg,#efefef,#e0e0e0);
+  display:flex;align-items:center;justify-content:center;
+  color:#9a9a9a;font-size:.8rem;letter-spacing:.08em;
+  width:100%;object-fit:cover;
+}
+.proj-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.proj-body h3{font-size:1.02rem;margin-bottom:10px}
+.proj-body p{font-size:.9rem;color:var(--ink-soft);margin-bottom:18px;flex:1}
+.tags{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tag{
+  font-size:.72rem;border:1px solid var(--line);
+  padding:5px 12px;border-radius:999px;color:#555;background:var(--card);
+}
+.more{margin-left:auto;font-size:.78rem;color:var(--ink-soft);white-space:nowrap}
+
+/* ---------- SKILLS ---------- */
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.skill-card{
+  background:#fff;border:1px solid var(--line);border-radius:16px;
+  padding:30px 28px;
+}
+.skill-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.skill-head .xp-icon{width:42px;height:42px}
+.skill-head h3{font-size:1rem;line-height:1.35}
+.skill-card ul{list-style:none}
+.skill-card li{
+  font-size:.9rem;color:#555;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.skill-card li::before{content:"◆";font-size:.5rem;color:#aaa}
+.soft-label{
+  font-size:.75rem;color:#9a9a9a;letter-spacing:.06em;
+  border-top:1px solid var(--line);padding-top:16px;margin:18px 0 12px;
+}
+.soft-row{display:flex;gap:10px;flex-wrap:wrap}
+.soft{
+  border:1px solid var(--line);border-radius:10px;background:var(--card);
+  font-size:.72rem;color:#555;padding:10px 14px;text-align:center;
+}
+
+/* ---------- CERTIFICATES ---------- */
+.cert-grid{display:grid;grid-template-columns:repeat(2,minmax(0,440px));gap:30px;justify-content:center}
+.cert{
+  background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  transition:transform .2s, box-shadow .25s;
+}
+.cert:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.09)}
+.cert-img{
+  aspect-ratio:4/3;background:linear-gradient(160deg,#f3f1ec,#e9e6df);
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:#a09a8e;font-size:.8rem;letter-spacing:.08em;
+  width:100%;object-fit:cover;
+}
+.cert-body{padding:20px 24px}
+.cert-body h3{font-size:.98rem;margin-bottom:6px}
+.cert-body span{font-size:.82rem;color:var(--ink-soft)}
+
+/* ---------- CONTACT ---------- */
+.contact{text-align:center;padding-bottom:120px}
+.contact p{color:var(--ink-soft);max-width:420px;margin:0 auto 34px}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:28px 0;text-align:center;
+  font-size:.8rem;color:#9a9a9a;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .hero-visual{max-height:380px;order:-1}
+  .proj-grid{grid-template-columns:1fr 1fr}
+  .skill-grid{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    background:#fff;border-bottom:1px solid var(--line);
+    flex-direction:column;gap:0;padding:10px 0;
+  }
+  .nav-links.open{display:flex}
+  .nav-links li{padding:12px 28px}
+  .menu-btn{display:block}
+}
+@media(max-width:600px){
+  .proj-grid{grid-template-columns:1fr}
+  section{padding:64px 0}
+  .xp-card{padding:28px 24px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="logo">Marco</a>
+    <button class="menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Project</a></li>
+      <li><a href="#skills">Skill</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Welcome</div>
+      <h1>Hello Everyone<br>I'm<br><span class="hero-name">Aung Pyae Sone (Marco)</span></h1>
+      <p class="hero-sub">3rd year Mechatronics Engineering student, studying at AGH University of Science and Technology, in Krakow, Poland.</p>
+      <div class="stats">
+        <div class="stat"><b>1</b><span>Internship</span></div>
+        <div class="stat"><b>9+</b><span>Months Experience</span></div>
+        <div class="stat"><b>250+</b><span>Lab Trials Analyzed</span></div>
+        <div class="stat"><b>7+</b><span>Projects</span></div>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-dark" href="#contact">Hire me →</a>
+        <a class="btn btn-light" href="#" download>Download CV</a>
+      </div>
+    </div>
+    <div class="hero-visual" style="background:linear-gradient(rgba(20,6,12,.55),rgba(20,6,12,.55)),url(images/hero.jpg) center/cover no-repeat">
+      <div class="chip tl">🖥 Responsive</div>
+      <div class="chip br">&lt;/&gt; Mechatronics</div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2 class="sec-title">About Me</h2>
+    <div class="about-grid">
+      <img class="about-photo" src="images/profile.jpg" alt="Aung Pyae Sone (Marco)">
+      <div class="about-text">
+        <p>I am a Mechatronics Engineering student at AGH University of Science and Technology, with a strong focus on mechanical design and system integration.</p>
+        <p>I have hands-on experience in electronics, embedded systems, and prototyping, with particular strength in mechanical design and assembly.</p>
+        <p>Currently, I am working as an Engineering Intern at Laser MCR, where I conduct experimental testing on fiber and Nd:YAG laser systems, gaining experience with real engineering processes, materials, and parameter optimization.</p>
+        <p>I enjoy solving practical engineering problems where mechanical design, electronics, and control systems come together, applying these skills across academic and extracurricular projects.</p>
+        <p>I am particularly interested in robotics, research and development, and intelligent automation — especially where theory meets real-world implementation. Currently, I am seeking internship or entry-level opportunities to contribute, learn, and grow in a professional engineering environment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <h2 class="sec-title">My Experience</h2>
+    <div class="xp-card">
+      <div class="xp-head">
+        <div class="xp-icon">💼</div>
+        <div>
+          <h3>Laser Systems Engineering Intern</h3>
+          <div class="xp-meta">Laser MCR | Kraków, Poland</div>
+          <div class="xp-date">Oct 2025 – Present</div>
+        </div>
+      </div>
+      <ul>
+        <li>Operated pulsed and CW fiber and Nd:YAG laser systems for material processing across metals, stone, and wood, in compliance with IEC 60825-1 laser safety standards.</li>
+        <li>Optimized process parameters through iterative testing, eliminating laser-induced surface grid artifacts and achieving consistent, clean finishes.</li>
+        <li>Diagnosed and resolved laser–material interaction issues using systematic troubleshooting and parameter isolation techniques.</li>
+        <li>Analyzed 250+ experimental trials using Excel to identify performance trends and support data-driven optimization.</li>
+        <li>Produced structured technical reports and maintained detailed engineering documentation aligned with laboratory standards.</li>
+        <li>Supported hardware configuration and system setup through component selection using technical datasheets and supplier catalogues.</li>
+        <li>Designed 3D models and developed custom 3D-printed components to support experimental setup efficiency and system integration.</li>
+      </ul>
+      <a class="btn btn-dark" href="#" target="_blank" rel="noopener">Visit Laser MCR ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <h2 class="sec-title">Latest Project</h2>
+    <div class="note">All images are from real projects, enhanced with AI to improve visual quality for web presentation.</div>
+    <div class="proj-grid">
+
+      <article class="proj">
+        <div class="proj-img">PROJECT IMAGE</div>
+        <div class="proj-body">
+          <h3>Thesis Project: Upcoming</h3>
+          <p>Vision-Based Tracking and Motion Prediction of Objects on a Pan-Tilt Mechatronic System.</p>
+          <div class="tags"><span class="tag">Vision Tracking &amp; Prediction</span><span class="tag">Pan-Tilt</span><a class="more" href="#" onclick="openModal('m-thesis');return false;">More info →</a></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <img class="proj-img" src="images/projects/celestial-navigation.jpg" alt="Celestial Navigation System">
+        <div class="proj-body">
+          <h3>Celestial Navigation System</h3>
+          <p>An autonomous sun &amp; star tracking navigation device using sensors and microcontrollers for position determination.</p>
+          <div class="tags"><span class="tag">Vision Systems</span><span class="tag">Raspberry Pi</span><a class="more" href="#" onclick="openModal('m-cns');return false;">More info →</a></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <img class="proj-img" src="images/projects/robotic-arm.jpg" alt="5-DOF Robotic Manipulator">
+        <div class="proj-body">
+          <h3>5-DOF Robotic Manipulator</h3>
+          <p>A five degree-of-freedom robotic arm with inverse kinematics control and precision gripping.</p>
+          <div class="tags"><span class="tag">Servos</span><span class="tag">Arduino</span><span class="tag">3D Print</span><a class="more" href="#" onclick="openModal('m-arm');return false;">More info →</a></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <img class="proj-img" src="images/projects/smart-door.jpg" alt="Voice-Activated Smart Door">
+        <div class="proj-body">
+          <h3>Voice-Activated Smart Door</h3>
+          <p>A smart door system using voice recognition to authenticate and grant access to authorised users.</p>
+          <div class="tags"><span class="tag">Signal Processing &amp; Identification</span><span class="tag">Arduino</span><a class="more" href="#" onclick="openModal('m-door');return false;">More info →</a></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <img class="proj-img" src="images/projects/v6-engine.jpg" alt="V6 Engine">
+        <div class="proj-body">
+          <h3>V6 Engine</h3>
+          <p>A detailed CAD model and simulation of a V6 internal combustion engine with full assembly.</p>
+          <div class="tags"><span class="tag">SolidWorks</span><span class="tag">Siemens NX</span><span class="more">More info →</span></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <img class="proj-img" src="images/projects/rope-robot.png" alt="Rope Climbing Robot">
+        <div class="proj-body">
+          <h3>Rope Climbing Robot</h3>
+          <p>A compact mechatronic robot designed to autonomously climb ropes using friction-driven wheels.</p>
+          <div class="tags"><span class="tag">Husarion</span><span class="tag">Motors</span><span class="more">More info →</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <h2 class="sec-title">Technical Skills</h2>
+    <div class="skill-grid">
+
+      <div class="skill-card">
+        <div class="skill-head"><div class="xp-icon">🔧</div><h3>Mechanical &amp; Design</h3></div>
+        <ul>
+          <li>2D Technical Drawings</li>
+          <li>3D Modelling &amp; Assembly</li>
+          <li>GD&amp;T (Fundamentals)</li>
+          <li>Basic FEM Analysis</li>
+          <li>Motion &amp; Kinematic Analysis</li>
+        </ul>
+        <div class="soft-label">Software</div>
+        <div class="soft-row"><span class="soft">AutoCAD</span><span class="soft">SolidWorks</span><span class="soft">Siemens NX</span></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-head"><div class="xp-icon">⚙️</div><h3>Electronics &amp; Embedded</h3></div>
+        <ul>
+          <li>Actuator &amp; Sensor Integration</li>
+          <li>Arduino (Servo, PWM, PID)</li>
+          <li>ESP32 (Embedded Applications)</li>
+          <li>Raspberry Pi (Vision Systems)</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-head"><div class="xp-icon">&gt;_</div><h3>Programming &amp; Software</h3></div>
+        <ul>
+          <li>C++ (OOPSE)</li>
+          <li>Python (Scripting)</li>
+          <li>MATLAB (Control &amp; Signals)</li>
+          <li>Simulink (Modeling &amp; Sim)</li>
+        </ul>
+        <div class="soft-label">Software</div>
+        <div class="soft-row"><span class="soft">C++</span><span class="soft">Python</span><span class="soft">MATLAB</span><span class="soft">Simulink</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="container">
+    <h2 class="sec-title">My Certificates</h2>
+    <div class="cert-grid">
+      <article class="cert">
+        <img class="cert-img" src="images/certs/excel-advanced.jpg" alt="Excel Skills for Business: Advanced certificate">
+        <div class="cert-body">
+          <h3>Excel Skills for Business: Advanced</h3>
+          <span>Macquarie University · Aug 2025</span>
+        </div>
+      </article>
+      <article class="cert">
+        <img class="cert-img" src="images/certs/power-bi.jpg" alt="Power BI &amp; Power Virtual Agents certificate">
+        <div class="cert-body">
+          <h3>Power BI &amp; Power Virtual Agents</h3>
+          <span>Microsoft · May 2025</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="sec-title">Get In Touch</h2>
+    <p>I'm currently seeking internship or entry-level opportunities. Feel free to reach out via LinkedIn!</p>
+    <a class="btn btn-dark" href="https://www.linkedin.com/" target="_blank" rel="noopener">in&nbsp; Connect on LinkedIn</a>
+  </div>
+</section>
+
+<footer>© 2026 Aung Pyae Sone (Marco) · Mechatronics Engineering · AGH UST, Kraków</footer>
+
+<!-- ============ PROJECT MODALS ============ -->
+
+<!-- THESIS -->
+<div class="modal-overlay" id="m-thesis" onclick="overlayClose(event,this)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('m-thesis')" aria-label="Close">✕</button>
+    <h3 class="modal-title">Thesis Project: Upcoming</h3>
+
+    <h4>Description</h4>
+    <p>This thesis focusses on the design and implementation of a vision-based object tracking system using a 2-DOF pan-tilt mechatronic platform. The system utilizes a camera connected to a processing unit to detect and track a moving object (ideally aerial object such as drone) in real time.</p>
+
+    <h4>Development Stages</h4>
+    <ul class="stages">
+      <li><span class="stage-num">1</span>Implementing a basic tracking system capable of detecting and following a moving object.</li>
+      <li><span class="stage-num">2</span>Closed-loop control using tracking error, along with PID control to improve stability, accuracy, and response time.</li>
+      <li><span class="stage-num">3</span>Predictive algorithms such as the Kalman Filter to estimate the future position of the moving object.</li>
+    </ul>
+
+    <h4>System Components &amp; Tools</h4>
+    <div class="spec-card">
+      <b>Mechanical System</b>
+      <div class="spec-row"><span class="k">Mechanism</span><span class="v">2-DOF Pan-Tilt</span></div>
+    </div>
+    <div class="spec-card">
+      <b>Electronics Hardware</b>
+      <div class="spec-row"><span class="k">Control Unit</span><span class="v">Arduino Uno</span></div>
+      <div class="spec-row"><span class="k">Processing Unit</span><span class="v">Raspberry Pi 5 (8GB RAM)</span></div>
+      <div class="spec-row"><span class="k">Vision System</span><span class="v">Raspberry Pi Camera Module v2</span></div>
+      <div class="spec-row"><span class="k">Actuators</span><span class="v">MG996R Servo Motors</span></div>
+      <div class="spec-row"><span class="k">Indicator</span><span class="v">KY-008 Laser Sensor Module</span></div>
+    </div>
+    <div class="spec-card">
+      <b>Software &amp; Control</b>
+      <div class="spec-row"><span class="k">Arduino</span><span class="v">C/C++</span></div>
+      <div class="spec-row"><span class="k">Raspberry Pi</span><span class="v">Python</span></div>
+      <div class="spec-row"><span class="k">Analysis Tools</span><span class="v">MATLAB, Simulink</span></div>
+    </div>
+
+    <h4>Hardware &amp; Sensors</h4>
+    <div class="hw-panel">
+      <div class="hw-title">Thesis Project</div>
+      <div class="hw-grid">
+        <div class="hw-item"><div class="hw-img">IMG</div><span>KY-008 Laser</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Feetech ST3215 Servo</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Raspberry Pi Camera v2</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Arduino Uno R4</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Pan-Tilt</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Raspberry Pi 5 (8Gb Ram)</span></div>
+      </div>
+    </div>
+
+    <h4>System Architecture</h4>
+    <div class="arch">Camera → Raspberry Pi → (Vision Processing &amp; Prediction)
+↓ Serial Communication ↓
+Arduino → Servo Motors → Pan-Tilt Motion</div>
+  </div>
+</div>
+
+<!-- CELESTIAL NAVIGATION SYSTEM -->
+<div class="modal-overlay" id="m-cns" onclick="overlayClose(event,this)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('m-cns')" aria-label="Close">✕</button>
+    <h3 class="modal-title">Celestial Navigation System</h3>
+    <img class="modal-hero-img" src="images/projects/celestial-navigation.jpg" alt="Celestial Navigation System">
+
+    <h4>Description</h4>
+    <p>The Celestial Navigation System is a mechatronic platform designed to determine orientation by tracking celestial objects in real time. It uses a 2-DOF pan-tilt mechanism with a camera to observe the sky and identify sun or stars. By combining visual data with precise time information and orientation data from onboard sensors (IMU and magnetometer), the system estimates angular position and maintains accurate alignment.</p>
+
+    <h4>System Components &amp; Tools</h4>
+    <div class="spec-card">
+      <b>Mechanical System</b>
+      <div class="spec-row"><span class="k">Mechanism</span><span class="v">2-DOF Pan-Tilt</span></div>
+    </div>
+    <div class="spec-card">
+      <b>Electronics &amp; Embedded System</b>
+      <div class="spec-row"><span class="k">Processing &amp; Control Unit</span><span class="v">Raspberry Pi 5 (8GB RAM)
+Arduino Uno R3</span></div>
+      <div class="spec-row"><span class="k">Vision System</span><span class="v">OV5647 Camera (160°)</span></div>
+      <div class="spec-row"><span class="k">Actuators</span><span class="v">MG996R Servo Motors (9.4 kg·cm)</span></div>
+      <div class="spec-row"><span class="k">Inertial &amp; Navigation Sensors</span><span class="v">Accelerometer — MPU6050 IMU
+Real-Time Clock — DS3231 RTC
+Magnetometer — MMC5603 3-axis</span></div>
+    </div>
+    <div class="spec-card">
+      <b>Software &amp; Control</b>
+      <div class="spec-row"><span class="k">Raspberry Pi OS</span><span class="v">Python 3 (OpenCV)</span></div>
+    </div>
+
+    <h4>Hardware &amp; Sensors</h4>
+    <div class="hw-panel">
+      <div class="hw-title">CELESTIAL NAVIGATION SYSTEM</div>
+      <div class="hw-grid">
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Real-Time Clock RTC DS3231 I2C</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Magnetometer MMC5603</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Accelerometer MPU6050 IMU</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>OmniVision OV5647 160° Camera</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Pan-Tilt Bracket</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Arduino Uno R3</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>MG996r Servo</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Raspberry Pi 5 (8Gb Ram)</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5-DOF ROBOTIC MANIPULATOR -->
+<div class="modal-overlay" id="m-arm" onclick="overlayClose(event,this)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('m-arm')" aria-label="Close">✕</button>
+    <h3 class="modal-title">5-DOF Robotic Manipulator</h3>
+    <img class="modal-hero-img" src="images/projects/robotic-arm.jpg" alt="5-DOF Robotic Manipulator">
+
+    <h4>Description</h4>
+    <p>Designed and developed a 5-DOF robotic arm using 3D-printed components and servo motors, focusing on precision motion control and modular mechanical design. The system integrates an Arduino-based control architecture to execute coordinated joint movements, enabling pick-and-place operations and trajectory following.</p>
+
+    <h4>System Components &amp; Tools</h4>
+    <div class="spec-card">
+      <b>Mechanical Assembly</b>
+      <div class="spec-row"><span class="k">Structure</span><span class="v">3D Printed</span></div>
+      <div class="spec-row"><span class="k">Bearings</span><span class="v">6705 Axial
+51109 Thrust</span></div>
+    </div>
+    <div class="spec-card">
+      <b>Electronics &amp; Embedded System</b>
+      <div class="spec-row"><span class="k">Processing &amp; Control Unit</span><span class="v">Arduino Uno</span></div>
+      <div class="spec-row"><span class="k">Actuators</span><span class="v">Feetech STS3215 Servo
+NEMA 17 Stepper Motor</span></div>
+    </div>
+    <div class="spec-card">
+      <b>Software &amp; Control</b>
+      <div class="spec-row"><span class="k">Arduino</span><span class="v">C/C++</span></div>
+    </div>
+
+    <h4>Hardware &amp; Sensors</h4>
+    <div class="hw-panel">
+      <div class="hw-title">Robotic Manipulator</div>
+      <div class="hw-grid">
+        <div class="hw-item"><div class="hw-img">IMG</div><span>6705 Bearing</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Nema 17 StepperMotor</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Feetech ST3215 Servo</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Arduino Uno R4</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>51109 Bearing</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>MG996r Servo</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VOICE-ACTIVATED SMART DOOR -->
+<div class="modal-overlay" id="m-door" onclick="overlayClose(event,this)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('m-door')" aria-label="Close">✕</button>
+    <h3 class="modal-title">Voice-Activated Smart Door</h3>
+    <img class="modal-hero-img" src="images/projects/smart-door.jpg" alt="Voice-Activated Smart Door">
+
+    <h4>Description</h4>
+    <p>Developed a smart dog door that opens upon recognizing the dog's voice. Implemented voice signal processing in MATLAB and Arduino-based control, with a servo motor actuating the door.</p>
+
+    <h4>System Components &amp; Tools</h4>
+    <div class="spec-card">
+      <b>Mechanical System</b>
+      <div class="spec-row"><span class="k">Structure</span><span class="v">3D Printed</span></div>
+    </div>
+    <div class="spec-card">
+      <b>Electronics &amp; Embedded System</b>
+      <div class="spec-row"><span class="k">Processing &amp; Control Unit</span><span class="v">Arduino Uno R3</span></div>
+      <div class="spec-row"><span class="k">Actuators</span><span class="v">SG-90 Servo</span></div>
+      <div class="spec-row"><span class="k">Sensors</span><span class="v">Microphone — Iduino ST1146
+Sound Sensor — Grove LM386
+Indicator — 5mm LED Diodes</span></div>
+    </div>
+    <div class="spec-card">
+      <b>Software &amp; Control</b>
+      <div class="spec-row"><span class="k">Signal Processing &amp; Identification</span><span class="v">MATLAB</span></div>
+      <div class="spec-row"><span class="k">Arduino</span><span class="v">C/C++</span></div>
+    </div>
+
+    <h4>Hardware &amp; Sensors</h4>
+    <div class="hw-panel">
+      <div class="hw-title">Voice-Activated Smart Door</div>
+      <div class="hw-grid">
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Grove - LM386 Sound Sensor</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Microphone - Iduino ST1146</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>5mm LED Diodes</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>SG-90 Servo</span></div>
+        <div class="hw-item"><div class="hw-img">IMG</div><span>Arduino Uno R3</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  document.body.classList.add('modal-lock');
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  document.body.classList.remove('modal-lock');
+}
+function overlayClose(e,el){
+  if(e.target===el){el.classList.remove('open');document.body.classList.remove('modal-lock');}
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'));
+    document.body.classList.remove('modal-lock');
+  }
+});
+</script>
+
+</body>
+</html>
