@@ -123,6 +123,30 @@ nav{
   color:#9a9a9a;font-size:.8rem;letter-spacing:.08em;
   width:100%;object-fit:cover;
 }
+.gallery{
+  position:relative;border-radius:14px;overflow:hidden;
+  margin-bottom:28px;aspect-ratio:16/7;
+}
+.gallery-track{display:flex;height:100%;transition:transform .3s ease}
+.gallery-slide{width:100%;height:100%;object-fit:cover;flex-shrink:0}
+.gallery-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:34px;height:34px;border-radius:50%;border:none;
+  background:rgba(0,0,0,.45);color:#fff;font-size:1.2rem;line-height:1;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);
+}
+.gallery-btn.prev{left:12px}
+.gallery-btn.next{right:12px}
+.gallery-dots{
+  position:absolute;bottom:12px;left:50%;transform:translateX(-50%);
+  display:flex;gap:6px;
+}
+.gallery-dots .dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(255,255,255,.55);cursor:pointer;border:none;padding:0;
+}
+.gallery-dots .dot.active{background:#fff}
 .modal h4{
   font-family:'Bruno Ace';font-size:.92rem;
   letter-spacing:.08em;text-transform:uppercase;
@@ -663,7 +687,20 @@ Arduino → Servo Motors → Pan-Tilt Motion</div>
   <div class="modal">
     <button class="modal-close" onclick="closeModal('m-cns')" aria-label="Close">✕</button>
     <h3 class="modal-title">Celestial Navigation System</h3>
-    <img class="modal-hero-img" src="images/projects/celestial-navigation.jpg" alt="Celestial Navigation System">
+    <div class="gallery" id="gal-cns" data-index="0">
+      <div class="gallery-track">
+        <img class="gallery-slide" src="images/projects/celestial-navigation.jpg" alt="Celestial Navigation System">
+        <img class="gallery-slide" src="images/projects/celestial-navigation-2.jpg" alt="Celestial Navigation System outdoor field test">
+        <img class="gallery-slide" src="images/projects/celestial-navigation-3.jpg" alt="Celestial Navigation System breadboard prototype">
+      </div>
+      <button class="gallery-btn prev" onclick="gallerySlide('gal-cns',-1)" aria-label="Previous image">‹</button>
+      <button class="gallery-btn next" onclick="gallerySlide('gal-cns',1)" aria-label="Next image">›</button>
+      <div class="gallery-dots">
+        <button class="dot active" onclick="galleryGo('gal-cns',0)" aria-label="Go to image 1"></button>
+        <button class="dot" onclick="galleryGo('gal-cns',1)" aria-label="Go to image 2"></button>
+        <button class="dot" onclick="galleryGo('gal-cns',2)" aria-label="Go to image 3"></button>
+      </div>
+    </div>
 
     <h4>Description</h4>
     <p>The Celestial Navigation System is a mechatronic platform designed to determine orientation by tracking celestial objects in real time. It uses a 2-DOF pan-tilt mechanism with a camera to observe the sky and identify sun or stars. By combining visual data with precise time information and orientation data from onboard sensors (IMU and magnetometer), the system estimates angular position and maintains accurate alignment.</p>
@@ -771,6 +808,19 @@ function closeModal(id){
 }
 function overlayClose(e,el){
   if(e.target===el){el.classList.remove('open');document.body.classList.remove('modal-lock');}
+}
+function galleryGo(id,index){
+  const gal=document.getElementById(id);
+  const dots=gal.querySelectorAll('.dot');
+  gal.dataset.index=index;
+  gal.querySelector('.gallery-track').style.transform=`translateX(-${index*100}%)`;
+  dots.forEach((d,i)=>d.classList.toggle('active',i===index));
+}
+function gallerySlide(id,dir){
+  const gal=document.getElementById(id);
+  const count=gal.querySelectorAll('.gallery-slide').length;
+  const next=(parseInt(gal.dataset.index,10)+dir+count)%count;
+  galleryGo(id,next);
 }
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
