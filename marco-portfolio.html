@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111111'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,7 +11,8 @@
 <meta property="og:title" content="Marco | Mechatronics Engineering Portfolio">
 <meta property="og:description" content="3rd year Mechatronics Engineering student at AGH UST, Kraków. Robotics, embedded systems & mechanical design projects.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://YOUR-DOMAIN.com/og-image.jpg">
+<meta property="og:url" content="https://aungpraesone.github.io/APS_Portfolio/">
+<meta property="og:image" content="https://aungpraesone.github.io/APS_Portfolio/images/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -398,8 +400,8 @@ footer{
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Project</a></li>
-      <li><a href="#skills">Skill</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#certificates">Certificates</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -421,11 +423,11 @@ footer{
       </div>
       <div class="hero-cta">
         <a class="btn btn-dark" href="#contact">Hire me →</a>
-        <a class="btn btn-light" href="#" download>Download CV</a>
+        <a class="btn btn-light" href="cv.pdf" download>Download CV</a>
       </div>
     </div>
     <div class="hero-visual" style="background:linear-gradient(rgba(20,6,12,.55),rgba(20,6,12,.55)),url(images/hero.jpg) center/cover no-repeat">
-      <div class="chip tl">🖥 Responsive</div>
+      <div class="chip tl">⚙ Robotics</div>
       <div class="chip br">&lt;/&gt; Mechatronics</div>
     </div>
   </div>
@@ -477,7 +479,7 @@ footer{
 <!-- PROJECTS -->
 <section id="projects">
   <div class="container">
-    <h2 class="sec-title">Latest Project</h2>
+    <h2 class="sec-title">Projects</h2>
     <div class="note">All images are from real projects, enhanced with AI to improve visual quality for web presentation.</div>
     <div class="proj-grid">
 
@@ -522,7 +524,7 @@ footer{
         <div class="proj-body">
           <h3>V6 Engine</h3>
           <p>A detailed CAD model and simulation of a V6 internal combustion engine with full assembly.</p>
-          <div class="tags"><span class="tag">SolidWorks</span><span class="tag">Siemens NX</span><span class="more">More info →</span></div>
+          <div class="tags"><span class="tag">SolidWorks</span><span class="tag">Siemens NX</span></div>
         </div>
       </article>
 
@@ -531,7 +533,7 @@ footer{
         <div class="proj-body">
           <h3>Rope Climbing Robot</h3>
           <p>A compact mechatronic robot designed to autonomously climb ropes using friction-driven wheels.</p>
-          <div class="tags"><span class="tag">Husarion</span><span class="tag">Motors</span><span class="more">More info →</span></div>
+          <div class="tags"><span class="tag">Husarion</span><span class="tag">Motors</span></div>
         </div>
       </article>
 
@@ -642,7 +644,7 @@ footer{
     <h3 class="modal-title">Thesis Project: Upcoming</h3>
 
     <h4>Description</h4>
-    <p>This thesis focusses on the design and implementation of a vision-based object tracking system using a 2-DOF pan-tilt mechatronic platform. The system utilizes a camera connected to a processing unit to detect and track a moving object (ideally aerial object such as drone) in real time.</p>
+    <p>This thesis focuses on the design and implementation of a vision-based object tracking system using a 2-DOF pan-tilt mechatronic platform. The system utilizes a camera connected to a processing unit to detect and track a moving object (ideally an aerial object such as a drone) in real time.</p>
 
     <h4>Development Stages</h4>
     <ul class="stages">
@@ -770,7 +772,7 @@ NEMA 17 Stepper Motor</span></div>
     <img class="modal-hero-img" src="images/projects/smart-door.jpg" alt="Voice-Activated Smart Door">
 
     <h4>Description</h4>
-    <p>Developed a smart dog door that opens upon recognizing the dog's voice. Implemented voice signal processing in MATLAB and Arduino-based control, with a servo motor actuating the door.</p>
+    <p>Developed a voice-activated smart door that opens upon recognizing an authorised user's voice. Implemented voice signal processing and speaker identification in MATLAB, with Arduino-based control and a servo motor actuating the door.</p>
 
     <h4>System Components &amp; Tools</h4>
     <div class="spec-card">
@@ -808,6 +810,9 @@ function closeModal(id){
 function overlayClose(e,el){
   if(e.target===el){el.classList.remove('open');document.body.classList.remove('modal-lock');}
 }
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open'));
+});
 function galleryGo(id,index){
   const gal=document.getElementById(id);
   const dots=gal.querySelectorAll('.dot');
