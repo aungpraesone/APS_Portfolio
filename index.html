@@ -130,6 +130,8 @@ nav{
   margin-bottom:28px;aspect-ratio:16/7;
 }
 .gallery.card{aspect-ratio:4/3;margin-bottom:0;border-radius:0}
+.gallery.tall{aspect-ratio:4/3}
+.gallery.low .gallery-slide{object-position:center 65%}
 .gallery-track{display:flex;height:100%;transition:transform .3s ease}
 .gallery-slide{width:100%;height:100%;object-fit:cover;flex-shrink:0}
 .gallery-btn{
@@ -525,7 +527,20 @@ footer{
       </article>
 
       <article class="proj">
-        <img class="proj-img" src="images/projects/smart-door.jpg" alt="Voice-Activated Smart Door">
+        <div class="gallery card low" id="gal-door-card" data-index="0">
+          <div class="gallery-track">
+            <img class="gallery-slide" src="images/projects/smart-door-front.jpg" alt="Voice-Activated Smart Door prototype, front view with LEDs lit">
+            <img class="gallery-slide" src="images/projects/smart-door-open.jpg" alt="Voice-Activated Smart Door prototype with the door open">
+            <img class="gallery-slide" src="images/projects/smart-door.jpg" alt="Voice-Activated Smart Door prototype next to the Arduino code">
+          </div>
+          <button class="gallery-btn prev" onclick="gallerySlide('gal-door-card',-1)" aria-label="Previous image">‹</button>
+          <button class="gallery-btn next" onclick="gallerySlide('gal-door-card',1)" aria-label="Next image">›</button>
+          <div class="gallery-dots">
+            <button class="dot active" onclick="galleryGo('gal-door-card',0)" aria-label="Go to image 1"></button>
+            <button class="dot" onclick="galleryGo('gal-door-card',1)" aria-label="Go to image 2"></button>
+            <button class="dot" onclick="galleryGo('gal-door-card',2)" aria-label="Go to image 3"></button>
+          </div>
+        </div>
         <div class="proj-body">
           <h3>Voice-Activated Smart Door</h3>
           <p>A smart door system using voice recognition to authenticate and grant access to authorised users.</p>
@@ -783,7 +798,20 @@ NEMA 17 Stepper Motor</span></div>
   <div class="modal">
     <button class="modal-close" onclick="closeModal('m-door')" aria-label="Close">✕</button>
     <h3 class="modal-title">Voice-Activated Smart Door</h3>
-    <img class="modal-hero-img" src="images/projects/smart-door.jpg" alt="Voice-Activated Smart Door">
+    <div class="gallery tall low" id="gal-door" data-index="0">
+      <div class="gallery-track">
+        <img class="gallery-slide" src="images/projects/smart-door-front.jpg" alt="Voice-Activated Smart Door prototype, front view with LEDs lit">
+        <img class="gallery-slide" src="images/projects/smart-door-open.jpg" alt="Voice-Activated Smart Door prototype with the door open">
+        <img class="gallery-slide" src="images/projects/smart-door.jpg" alt="Voice-Activated Smart Door prototype next to the Arduino code">
+      </div>
+      <button class="gallery-btn prev" onclick="gallerySlide('gal-door',-1)" aria-label="Previous image">‹</button>
+      <button class="gallery-btn next" onclick="gallerySlide('gal-door',1)" aria-label="Next image">›</button>
+      <div class="gallery-dots">
+        <button class="dot active" onclick="galleryGo('gal-door',0)" aria-label="Go to image 1"></button>
+        <button class="dot" onclick="galleryGo('gal-door',1)" aria-label="Go to image 2"></button>
+        <button class="dot" onclick="galleryGo('gal-door',2)" aria-label="Go to image 3"></button>
+      </div>
+    </div>
 
     <h4>Description</h4>
     <p>Developed a voice-activated smart door that opens upon recognizing an authorised user's voice. Implemented voice signal processing and speaker identification in MATLAB, with Arduino-based control and a servo motor actuating the door.</p>

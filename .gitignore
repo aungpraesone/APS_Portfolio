@@ -5,3 +5,4 @@ Thumbs.db
 .env
 .claude/settings.local.json
 .claude/launch.json
+images/projects/IMG_*.jpg
