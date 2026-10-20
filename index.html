@@ -129,6 +129,7 @@ nav{
   position:relative;border-radius:14px;overflow:hidden;
   margin-bottom:28px;aspect-ratio:16/7;
 }
+.gallery.card{aspect-ratio:4/3;margin-bottom:0;border-radius:0}
 .gallery-track{display:flex;height:100%;transition:transform .3s ease}
 .gallery-slide{width:100%;height:100%;object-fit:cover;flex-shrink:0}
 .gallery-btn{
@@ -493,7 +494,20 @@ footer{
       </article>
 
       <article class="proj">
-        <img class="proj-img" src="images/projects/celestial-navigation.jpg" alt="Celestial Navigation System">
+        <div class="gallery card" id="gal-cns-card" data-index="0">
+          <div class="gallery-track">
+            <img class="gallery-slide" src="images/projects/celestial-navigation.jpg" alt="Celestial Navigation System">
+            <img class="gallery-slide" src="images/projects/celestial-navigation-2.jpg" alt="Celestial Navigation System outdoor field test">
+            <img class="gallery-slide" src="images/projects/celestial-navigation-3.jpg" alt="Celestial Navigation System breadboard prototype">
+          </div>
+          <button class="gallery-btn prev" onclick="gallerySlide('gal-cns-card',-1)" aria-label="Previous image">‹</button>
+          <button class="gallery-btn next" onclick="gallerySlide('gal-cns-card',1)" aria-label="Next image">›</button>
+          <div class="gallery-dots">
+            <button class="dot active" onclick="galleryGo('gal-cns-card',0)" aria-label="Go to image 1"></button>
+            <button class="dot" onclick="galleryGo('gal-cns-card',1)" aria-label="Go to image 2"></button>
+            <button class="dot" onclick="galleryGo('gal-cns-card',2)" aria-label="Go to image 3"></button>
+          </div>
+        </div>
         <div class="proj-body">
           <h3>Celestial Navigation System</h3>
           <p>An autonomous sun &amp; star tracking navigation device using sensors and microcontrollers for position determination.</p>
