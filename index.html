@@ -132,6 +132,9 @@ nav{
 .gallery.card{aspect-ratio:4/3;margin-bottom:0;border-radius:0}
 .gallery.tall{aspect-ratio:4/3}
 .gallery.low .gallery-slide{object-position:center 65%}
+.gallery.light{background:#fff}
+.gallery.light .gallery-dots .dot{background:rgba(0,0,0,.25)}
+.gallery.light .gallery-dots .dot.active{background:#333}
 .gallery-track{display:flex;height:100%;transition:transform .3s ease}
 .gallery-slide{width:100%;height:100%;object-fit:cover;flex-shrink:0}
 .gallery-btn{
@@ -518,7 +521,20 @@ footer{
       </article>
 
       <article class="proj">
-        <img class="proj-img" src="images/projects/robotic-arm.jpg" alt="5-DOF Robotic Manipulator">
+        <div class="gallery card light" id="gal-arm-card" data-index="0">
+          <div class="gallery-track">
+            <img class="gallery-slide" src="images/projects/robotic-arm-1.png" alt="5-DOF Robotic Manipulator CAD model, isometric view">
+            <img class="gallery-slide" src="images/projects/robotic-arm-2.png" alt="5-DOF Robotic Manipulator CAD model, side view">
+            <img class="gallery-slide" src="images/projects/robotic-arm-3.png" alt="5-DOF Robotic Manipulator CAD model, top view">
+          </div>
+          <button class="gallery-btn prev" onclick="gallerySlide('gal-arm-card',-1)" aria-label="Previous image">‹</button>
+          <button class="gallery-btn next" onclick="gallerySlide('gal-arm-card',1)" aria-label="Next image">›</button>
+          <div class="gallery-dots">
+            <button class="dot active" onclick="galleryGo('gal-arm-card',0)" aria-label="Go to image 1"></button>
+            <button class="dot" onclick="galleryGo('gal-arm-card',1)" aria-label="Go to image 2"></button>
+            <button class="dot" onclick="galleryGo('gal-arm-card',2)" aria-label="Go to image 3"></button>
+          </div>
+        </div>
         <div class="proj-body">
           <h3>5-DOF Robotic Manipulator</h3>
           <p>A five degree-of-freedom robotic arm with inverse kinematics control and precision gripping.</p>
@@ -765,7 +781,20 @@ Magnetometer — MMC5603 3-axis</span></div>
   <div class="modal">
     <button class="modal-close" onclick="closeModal('m-arm')" aria-label="Close">✕</button>
     <h3 class="modal-title">5-DOF Robotic Manipulator</h3>
-    <img class="modal-hero-img" src="images/projects/robotic-arm.jpg" alt="5-DOF Robotic Manipulator">
+    <div class="gallery tall light" id="gal-arm" data-index="0">
+      <div class="gallery-track">
+        <img class="gallery-slide" src="images/projects/robotic-arm-1.png" alt="5-DOF Robotic Manipulator CAD model, isometric view">
+        <img class="gallery-slide" src="images/projects/robotic-arm-2.png" alt="5-DOF Robotic Manipulator CAD model, side view">
+        <img class="gallery-slide" src="images/projects/robotic-arm-3.png" alt="5-DOF Robotic Manipulator CAD model, top view">
+      </div>
+      <button class="gallery-btn prev" onclick="gallerySlide('gal-arm',-1)" aria-label="Previous image">‹</button>
+      <button class="gallery-btn next" onclick="gallerySlide('gal-arm',1)" aria-label="Next image">›</button>
+      <div class="gallery-dots">
+        <button class="dot active" onclick="galleryGo('gal-arm',0)" aria-label="Go to image 1"></button>
+        <button class="dot" onclick="galleryGo('gal-arm',1)" aria-label="Go to image 2"></button>
+        <button class="dot" onclick="galleryGo('gal-arm',2)" aria-label="Go to image 3"></button>
+      </div>
+    </div>
 
     <h4>Description</h4>
     <p>Designed and developed a 5-DOF robotic arm using 3D-printed components and servo motors, focusing on precision motion control and modular mechanical design. The system integrates an Arduino-based control architecture to execute coordinated joint movements, enabling pick-and-place operations and trajectory following.</p>
